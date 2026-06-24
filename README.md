@@ -50,6 +50,8 @@ values/
 
 ## How it fits in
 
-`platform-apps/registry/podinfo.yaml` registers podinfo with the `cd-apps` ApplicationSet and points `$values` at this repo. The ApplicationSet generates `podinfo-dev` and `podinfo-prod` Argo CD Applications — each a multi-source Helm release combining the upstream podinfo chart with values from this repo.
+`platform-apps/registry/podinfo.yaml` registers podinfo with the `cd-apps` ApplicationSet. The entry's `valuesRepoURL` field points at this repo, making it the `$values` source for the multi-source Helm release. Value file paths in the registry entry use the `$values/values/` prefix (e.g. `$values/values/dev-values.yaml`), resolving relative to this repo's root.
 
-To change podinfo configuration, edit the values files here and push — Argo CD picks up the change on next sync.
+The `cd-apps` ApplicationSet generates two Argo CD Applications — `podinfo-dev` and `podinfo-prod` — each combining the upstream podinfo Helm chart with values from this repo.
+
+To change podinfo configuration, edit the values files here and push — Argo CD picks up the change on next sync. To change the chart version or namespace, update `platform-apps/registry/podinfo.yaml`.

@@ -2,7 +2,7 @@ name: podinfo
 repoUrl: https://stefanprodan.github.io/podinfo
 chart: podinfo
 chartVersion: 6.14.0
-namespace: podinfo
+namespace: business-apps
 valuesRepoURL: https://github.com/platform-engineer-lab/podinfo-config
 environment:
   - env: dev
